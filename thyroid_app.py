@@ -45,6 +45,9 @@ def main():
     # Combine all features into a single input array
     input_data = [[age, smoking, n, t, stage, hx_smoking]]
 
+    # Add this right before making the prediction in the Streamlit app
+    st.write(f"Input data: {input_data}")
+
     # Predict button
     if st.button("Predict"):
         probabilities = model.predict_proba(input_data)
