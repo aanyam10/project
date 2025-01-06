@@ -5,20 +5,22 @@ from io import BytesIO
 
 @st.cache_resource
 def load_model():
-    # GitHub URL to the raw model file
-    model_url = "https://github.com/aanyam10/project/blob/43720374865fd518be2318c7551e0ec7bfff7274/thyroid_model_1.pkl"
-    # "https://raw.githubusercontent.com/aanyam10/project/main/thyroid_model_1.pkl"
-    
-    # Fetch the model file from GitHub
-    response = requests.get(model_url)
-    
-    # Check if the request was successful
-    if response.status_code == 200:
-        # Load the model from the raw content (binary stream)
+    model_url = "https://github.com/yourusername/yourrepo/raw/main/thyroid_model.pkl"  # Update with your model URL
+    try:
+        # Download the model file from the URL
+        response = requests.get(model_url)
+        response.raise_for_status()  # Raise an error for bad status codes (404, 500, etc.)
+        
+        # Load the model from the response content
         model = joblib.load(BytesIO(response.content))
+        st.write("Model loaded successfully.")
         return model
-    else:
-        raise Exception(f"Failed to load model from GitHub. Status code: {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error downloading model: {e}")
+        return None
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
+        return None
 
 model = load_model()
 
