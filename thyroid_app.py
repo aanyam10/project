@@ -5,7 +5,7 @@ from io import BytesIO
 
 @st.cache_resource
 def load_model():
-    model_url = "https://github.com/yourusername/yourrepo/raw/main/thyroid_model.pkl"  # Update with your model URL
+    model_url = "thyroid_model_1.pkl"  # Update with your model URL
     try:
         # Download the model file from the URL
         response = requests.get(model_url)
