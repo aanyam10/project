@@ -3,5 +3,5 @@ pandas==2.1.4
 scikit-learn==1.2.2
 joblib==1.4.2
 numpy==1.26.4
-Cython==3.0.11
+Cython==3.0.2
 requests==2.32.2
