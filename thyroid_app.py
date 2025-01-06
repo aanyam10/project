@@ -5,22 +5,12 @@ from io import BytesIO
 
 @st.cache_resource
 def load_model():
-    model_url = "https://raw.githubusercontent.com/aanyam10/project/main/thyroid_model_1.pkl"  # Update with your model URL
-    try:
-        # Download the model file from the URL
-        response = requests.get(model_url)
-        response.raise_for_status()  # Raise an error for bad status codes (404, 500, etc.)
-        
-        # Load the model from the response content
-        model = joblib.load(BytesIO(response.content))
-        st.write("Model loaded successfully.")
-        return model
-    except requests.exceptions.RequestException as e:
-        st.error(f"Error downloading model: {e}")
-        return None
-    except Exception as e:
-        st.error(f"Error loading model: {e}")
-        return None
+    url = "https://raw.githubusercontent.com/aanyam10/project/main/thyroid_model_1.pkl"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return joblib.load(BytesIO(response.content))
+    else:
+        raise Exception(f"Failed to load model. Status code: {response.status_code}")
 
 model = load_model()
 
