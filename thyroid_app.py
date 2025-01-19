@@ -38,7 +38,7 @@ def main():
     )
 
     # Feature: Age (using st.slider instead of st.number_input)
-    age = st.slider("Age:", min_value=0, max_value=120, step=1)
+    age = st.slider("Age:", min_value=0, max_value=100, step=1)
 
     # Feature: Stage (I: 0, II: 1, III: 2, IVB: 3, IVA: 4)
     stage = st.selectbox("Stage:", options=[0, 1, 2, 3, 4], format_func=lambda x: {
