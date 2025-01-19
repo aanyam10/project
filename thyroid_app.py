@@ -37,8 +37,8 @@ def main():
         unsafe_allow_html=True
     )
 
-    # Feature: Age (using st.number_input without markdown)
-    age = st.number_input("Age:", min_value=0, max_value=120, step=1)
+    # Feature: Age (using st.slider instead of st.number_input)
+    age = st.slider("Age:", min_value=0, max_value=120, step=1)
 
     # Feature: Stage (I: 0, II: 1, III: 2, IVB: 3, IVA: 4)
     stage = st.selectbox("Stage:", options=[0, 1, 2, 3, 4], format_func=lambda x: {
@@ -78,8 +78,8 @@ def main():
         # Display results as confidence percentages with custom style
         st.markdown(
             f"""
-            <p style='text-align: center; font-size: 24px; color: #000000;'>
-            Confidence in Recurrence: {confidence_recurrence:.2f}%
+            <p style='text-align: center; font-size: 24px; color: #ff4500;'>
+            **Confidence in Recurrence:** {confidence_recurrence:.2f}%
             </p>
             """,
             unsafe_allow_html=True
