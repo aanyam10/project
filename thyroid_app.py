@@ -21,12 +21,9 @@ def main():
     # Feature: Age
     age = st.number_input("Age:", min_value=0, max_value=120, step=1)
 
-    # Feature: Smoking (Yes: 1, No: 0)
-    smoking = st.selectbox("Smoking:", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes")
-
-    # Feature: N (Node involvement) (N0: 0, N1b: 1, N1a: 2)
-    n = st.selectbox("N (Node involvement):", options=[0, 1, 2], format_func=lambda x: {
-        0: "N0", 1: "N1b", 2: "N1a"
+    # Feature: Stage (I: 0, II: 1, III: 2, IVB: 3, IVA: 4)
+    stage = st.selectbox("Stage:", options=[0, 1, 2, 3, 4], format_func=lambda x: {
+        0: "I", 1: "II", 2: "III", 3: "IVB", 4: "IVA"
     }[x])
 
     # Feature: T (Tumor size/stage) (T1a: 0, T1b: 1, T2: 2, T3a: 3, T3b: 4, T4a: 5, T4b: 6)
@@ -34,16 +31,21 @@ def main():
         0: "T1a", 1: "T1b", 2: "T2", 3: "T3a", 4: "T3b", 5: "T4a", 6: "T4b"
     }[x])
 
-    # Feature: Stage (I: 0, II: 1, III: 2, IVB: 3, IVA: 4)
-    stage = st.selectbox("Stage:", options=[0, 1, 2, 3, 4], format_func=lambda x: {
-        0: "I", 1: "II", 2: "III", 3: "IVB", 4: "IVA"
+    # Feature: N (Node involvement) (N0: 0, N1b: 1, N1a: 2)
+    n = st.selectbox("N (Node involvement):", options=[0, 1, 2], format_func=lambda x: {
+        0: "N0", 1: "N1b", 2: "N1a"
     }[x])
 
-    # Feature: Hx Smoking (Yes: 1, No: 0)
-    hx_smoking = st.selectbox("Hx Smoking:", options=[0, 1], format_func=lambda x: "No" if x == 0 else "Yes")
+   # Feature: Adenopathy ('No':0,'Right':1, 'Extensive':2, 'Left':3, 'Bilateral':4, 'Posterior':5)
+    Adenopathy = st.selectbox("Adenopathy:", options=[0, 1, 2, 3, 4, 5], format_func=lambda {
+        0: "No", 1: "Right", 2: "Extensive", 3: "Left", 4: "Bilateral", 5: "Posterior"}[x])
+
+    # Feature: Response ('Excellent':0,'Indeterminate':1, 'Structural Incomplete':2, 'Biochemical Incomplete':3)
+    Response = st.selectbox("Response:", options=[0, 1, 2, 3], format_func=lambda {
+        0: "Excellent", 1: "Indeterminate", 2: "Structural Incomplete", 3: "Biochemical Incomplete"}[x])
 
     # Combine all features into a single input array
-    input_data = [[age, smoking, n, t, stage, hx_smoking]]
+    input_data = [[age, stage, t, n, adenopathy, response]]
 
     # Add this right before making the prediction in the Streamlit app
     st.write(f"Input data: {input_data}")
