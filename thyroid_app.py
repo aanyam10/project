@@ -37,7 +37,7 @@ def main():
         unsafe_allow_html=True
     )
 
-    # Feature: Age
+    # Feature: Age (using st.number_input without markdown)
     st.number_input("Age:", min_value=0, max_value=120, step=1)
 
     # Feature: Stage (I: 0, II: 1, III: 2, IVB: 3, IVA: 4)
