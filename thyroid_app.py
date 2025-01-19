@@ -37,65 +37,64 @@ def main():
         unsafe_allow_html=True
     )
 
-    # Custom CSS for tighter spacing between title and dropdown/input box
+    # Custom CSS for removing extra spacing (try again with a different approach)
     st.markdown(
         """
         <style>
-        .stTextInput, .stSelectbox, .stNumberInput, .stSelectSlider, .stSlider {
+        .stTextInput, .stSelectbox, .stNumberInput {
+            padding-top: 0px;
+            padding-bottom: 0px;
             margin-top: 0px;
-            margin-bottom: 0px;  /* Remove margins between the input and title */
-        }
-        .stForm {
-            margin-top: 0px;
-        }
-        .css-1x0f5v0 {
-            margin-bottom: 0px !important;
+            margin-bottom: 0px;
         }
         </style>
         """,
         unsafe_allow_html=True
     )
 
-    # Feature: Age
-    st.markdown("<b style='font-size: 16px;'>Age:</b>", unsafe_allow_html=True)
-    age = st.number_input("", min_value=0, max_value=120, step=1)
+    # Using a form to group elements
+    with st.form(key='input_form'):
+        # Feature: Age
+        st.markdown("<b style='font-size: 16px;'>Age:</b>", unsafe_allow_html=True)
+        age = st.number_input("", min_value=0, max_value=120, step=1)
 
-    # Feature: Stage
-    st.markdown("<b style='font-size: 16px;'>Stage:</b>", unsafe_allow_html=True)
-    stage = st.selectbox("", options=[0, 1, 2, 3, 4], format_func=lambda x: {
-        0: "I", 1: "II", 2: "III", 3: "IVB", 4: "IVA"
-    }[x])
+        # Feature: Stage
+        st.markdown("<b style='font-size: 16px;'>Stage:</b>", unsafe_allow_html=True)
+        stage = st.selectbox("", options=[0, 1, 2, 3, 4], format_func=lambda x: {
+            0: "I", 1: "II", 2: "III", 3: "IVB", 4: "IVA"
+        }[x])
 
-    # Feature: T (Tumor size)
-    st.markdown("<b style='font-size: 16px;'>T (Tumor size):</b>", unsafe_allow_html=True)
-    t = st.selectbox("", options=[0, 1, 2, 3, 4, 5, 6], format_func=lambda x: {
-        0: "T1a", 1: "T1b", 2: "T2", 3: "T3a", 4: "T3b", 5: "T4a", 6: "T4b"
-    }[x])
+        # Feature: T (Tumor size)
+        st.markdown("<b style='font-size: 16px;'>T (Tumor size):</b>", unsafe_allow_html=True)
+        t = st.selectbox("", options=[0, 1, 2, 3, 4, 5, 6], format_func=lambda x: {
+            0: "T1a", 1: "T1b", 2: "T2", 3: "T3a", 4: "T3b", 5: "T4a", 6: "T4b"
+        }[x])
 
-    # Feature: N (Node involvement)
-    st.markdown("<b style='font-size: 16px;'>N (Node involvement):</b>", unsafe_allow_html=True)
-    n = st.selectbox("", options=[0, 1, 2], format_func=lambda x: {
-        0: "N0", 1: "N1b", 2: "N1a"
-    }[x])
+        # Feature: N (Node involvement)
+        st.markdown("<b style='font-size: 16px;'>N (Node involvement):</b>", unsafe_allow_html=True)
+        n = st.selectbox("", options=[0, 1, 2], format_func=lambda x: {
+            0: "N0", 1: "N1b", 2: "N1a"
+        }[x])
 
-    # Feature: Adenopathy
-    st.markdown("<b style='font-size: 16px;'>Adenopathy:</b>", unsafe_allow_html=True)
-    adenopathy = st.selectbox("", options=[0, 1, 2, 3, 4, 5], format_func=lambda x: {
-        0: "No", 1: "Right", 2: "Extensive", 3: "Left", 4: "Bilateral", 5: "Posterior"}[x])
+        # Feature: Adenopathy
+        st.markdown("<b style='font-size: 16px;'>Adenopathy:</b>", unsafe_allow_html=True)
+        adenopathy = st.selectbox("", options=[0, 1, 2, 3, 4, 5], format_func=lambda x: {
+            0: "No", 1: "Right", 2: "Extensive", 3: "Left", 4: "Bilateral", 5: "Posterior"}[x])
 
-    # Feature: Response
-    st.markdown("<b style='font-size: 16px;'>Response:</b>", unsafe_allow_html=True)
-    response = st.selectbox("", options=[0, 1, 2, 3], format_func=lambda x: {
-        0: "Excellent", 1: "Indeterminate", 2: "Structural Incomplete", 3: "Biochemical Incomplete"}[x])
+        # Feature: Response
+        st.markdown("<b style='font-size: 16px;'>Response:</b>", unsafe_allow_html=True)
+        response = st.selectbox("", options=[0, 1, 2, 3], format_func=lambda x: {
+            0: "Excellent", 1: "Indeterminate", 2: "Structural Incomplete", 3: "Biochemical Incomplete"}[x])
 
-    # Combine all features into a single input array
-    input_data = [[age, stage, t, n, adenopathy, response]]
+        # Submit button inside form
+        submit_button = st.form_submit_button("Predict")
 
-    # Display input data for debugging purposes
-    st.write(f"Input data: {input_data}")
+    if submit_button:
+        input_data = [[age, stage, t, n, adenopathy, response]]
 
-    # Predict button
-    if st.button("Predict"):
+        # Display input data for debugging purposes
+        st.write(f"Input data: {input_data}")
+
         probabilities = model.predict_proba(input_data)
         confidence_no_recurrence = probabilities[0][0] * 100
         confidence_recurrence = probabilities[0][1] * 100
