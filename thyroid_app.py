@@ -37,6 +37,21 @@ def main():
         unsafe_allow_html=True
     )
 
+    # Custom CSS for removing extra spacing
+    st.markdown(
+        """
+        <style>
+        .streamlit-expanderHeader {
+            padding-top: 0px;
+        }
+        .css-1x0f5v0 {
+            margin-top: 0px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
     # Feature: Age
     st.markdown("<b style='font-size: 16px;'>Age:</b>", unsafe_allow_html=True)
     age = st.number_input("", min_value=0, max_value=120, step=1)
