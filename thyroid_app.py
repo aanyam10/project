@@ -37,11 +37,11 @@ def main():
     }[x])
 
    # Feature: Adenopathy ('No':0,'Right':1, 'Extensive':2, 'Left':3, 'Bilateral':4, 'Posterior':5)
-    Adenopathy = st.selectbox("Adenopathy:", options=[0, 1, 2, 3, 4, 5], format_func=lambda {
+    Adenopathy = st.selectbox("Adenopathy:", options=[0, 1, 2, 3, 4, 5], format_func=lambda x: {
         0: "No", 1: "Right", 2: "Extensive", 3: "Left", 4: "Bilateral", 5: "Posterior"}[x])
 
     # Feature: Response ('Excellent':0,'Indeterminate':1, 'Structural Incomplete':2, 'Biochemical Incomplete':3)
-    Response = st.selectbox("Response:", options=[0, 1, 2, 3], format_func=lambda {
+    Response = st.selectbox("Response:", options=[0, 1, 2, 3], format_func=lambda x: {
         0: "Excellent", 1: "Indeterminate", 2: "Structural Incomplete", 3: "Biochemical Incomplete"}[x])
 
     # Combine all features into a single input array
