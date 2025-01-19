@@ -75,9 +75,15 @@ def main():
         confidence_no_recurrence = probabilities[0][0] * 100
         confidence_recurrence = probabilities[0][1] * 100
 
-        # Display results as confidence percentages
-        st.write(f"**Confidence in Recurrence:** {confidence_recurrence:.2f}%")
-        #st.write(f"**Confidence in No Recurrence:** {confidence_no_recurrence:.2f}%")
+        # Display results as confidence percentages with custom style
+        st.markdown(
+            f"""
+            <p style='text-align: center; font-size: 24px; color: #ff4500;'>
+            **Confidence in Recurrence:** {confidence_recurrence:.2f}%
+            </p>
+            """,
+            unsafe_allow_html=True
+        )
 
         # Visualization with Matplotlib
         fig, ax = plt.subplots()
