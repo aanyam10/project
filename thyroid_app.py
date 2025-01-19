@@ -37,71 +37,47 @@ def main():
         unsafe_allow_html=True
     )
 
-    # Using a form to group elements without additional CSS
-    with st.form(key='input_form'):
-        # Feature: Age
-        st.text("Age:")
-        age = st.number_input("", min_value=0, max_value=120, step=1)
+    # Feature: Age
+    age = st.number_input("Age:", min_value=0, max_value=120, step=1)
 
-        # Feature: Stage
-        st.text("Stage:")
-        stage = st.selectbox("", options=[0, 1, 2, 3, 4], format_func=lambda x: {
-            0: "I", 1: "II", 2: "III", 3: "IVB", 4: "IVA"
-        }[x])
+    # Feature: Stage (I: 0, II: 1, III: 2, IVB: 3, IVA: 4)
+    stage = st.selectbox("Stage:", options=[0, 1, 2, 3, 4], format_func=lambda x: {
+        0: "I", 1: "II", 2: "III", 3: "IVB", 4: "IVA"
+    }[x])
 
-        # Feature: T (Tumor size)
-        st.text("T (Tumor size):")
-        t = st.selectbox("", options=[0, 1, 2, 3, 4, 5, 6], format_func=lambda x: {
-            0: "T1a", 1: "T1b", 2: "T2", 3: "T3a", 4: "T3b", 5: "T4a", 6: "T4b"
-        }[x])
+    # Feature: T (Tumor size) (T1a: 0, T1b: 1, T2: 2, T3a: 3, T3b: 4, T4a: 5, T4b: 6)
+    t = st.selectbox("T (Tumor size):", options=[0, 1, 2, 3, 4, 5, 6], format_func=lambda x: {
+        0: "T1a", 1: "T1b", 2: "T2", 3: "T3a", 4: "T3b", 5: "T4a", 6: "T4b"
+    }[x])
 
-        # Feature: N (Node involvement)
-        st.text("N (Node involvement):")
-        n = st.selectbox("", options=[0, 1, 2], format_func=lambda x: {
-            0: "N0", 1: "N1b", 2: "N1a"
-        }[x])
+    # Feature: N (Node involvement) (N0: 0, N1b: 1, N1a: 2)
+    n = st.selectbox("N (Node involvement):", options=[0, 1, 2], format_func=lambda x: {
+        0: "N0", 1: "N1b", 2: "N1a"
+    }[x])
 
-        # Feature: Adenopathy
-        st.text("Adenopathy:")
-        adenopathy = st.selectbox("", options=[0, 1, 2, 3, 4, 5], format_func=lambda x: {
-            0: "No", 1: "Right", 2: "Extensive", 3: "Left", 4: "Bilateral", 5: "Posterior"}[x])
+    # Feature: Adenopathy ('No':0,'Right':1,'Extensive':2,'Left':3,'Bilateral':4,'Posterior':5)
+    adenopathy = st.selectbox("Adenopathy:", options=[0, 1, 2, 3, 4, 5], format_func=lambda x: {
+        0: "No", 1: "Right", 2: "Extensive", 3: "Left", 4: "Bilateral", 5: "Posterior"}[x])
 
-        # Feature: Response
-        st.text("Response:")
-        response = st.selectbox("", options=[0, 1, 2, 3], format_func=lambda x: {
-            0: "Excellent", 1: "Indeterminate", 2: "Structural Incomplete", 3: "Biochemical Incomplete"}[x])
+    # Feature: Response ('Excellent':0,'Indeterminate':1,'Structural Incomplete':2,'Biochemical Incomplete':3)
+    response = st.selectbox("Response:", options=[0, 1, 2, 3], format_func=lambda x: {
+        0: "Excellent", 1: "Indeterminate", 2: "Structural Incomplete", 3: "Biochemical Incomplete"}[x])
 
-        # Submit button inside form
-        submit_button = st.form_submit_button("Predict")
+    # Combine all features into a single input array
+    input_data = [[age, stage, t, n, adenopathy, response]]
 
-    if submit_button:
-        input_data = [[age, stage, t, n, adenopathy, response]]
+    # Add this right before making the prediction in the Streamlit app
+    st.write(f"Input data: {input_data}")
 
-        # Display input data for debugging purposes
-        st.write(f"Input data: {input_data}")
-
+    # Predict button
+    if st.button("Predict"):
         probabilities = model.predict_proba(input_data)
         confidence_no_recurrence = probabilities[0][0] * 100
         confidence_recurrence = probabilities[0][1] * 100
 
-        # Display results as confidence percentages with custom styles
-        st.markdown(
-            f"""
-            <p style='text-align: center; font-size: 20px; color: red;'>
-            <b>Confidence in Recurrence:</b> {confidence_recurrence:.2f}%
-            </p>
-            """,
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            f"""
-            <p style='text-align: center; font-size: 20px; color: green;'>
-            <b>Confidence in No Recurrence:</b> {confidence_no_recurrence:.2f}%
-            </p>
-            """,
-            unsafe_allow_html=True
-        )
+        # Display results as confidence percentages
+        st.write(f"**Confidence in Recurrence:** {confidence_recurrence:.2f}%")
+        #st.write(f"**Confidence in No Recurrence:** {confidence_no_recurrence:.2f}%")
 
         # Visualization with Matplotlib
         fig, ax = plt.subplots()
