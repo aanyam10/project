@@ -42,10 +42,10 @@ def main():
         """
         <style>
         .stTextInput, .stSelectbox, .stNumberInput {
-            padding-top: 0px;
-            padding-bottom: 0px;
-            margin-top: 0px;
-            margin-bottom: 0px;
+            padding-top: -10px;
+            padding-bottom: -10px;
+            margin-top: -10px;
+            margin-bottom: -10px;
         }
         </style>
         """,
