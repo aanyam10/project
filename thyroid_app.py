@@ -15,8 +15,25 @@ def load_model():
 model = load_model()
 
 def main():
-    st.title("Thyroid Cancer Recurrence Prediction")
-    st.write("Provide inputs for each feature:")
+    # Centered Title with Custom Font Size and Color
+    st.markdown(
+        """
+        <h1 style='text-align: center; color: #4CAF50; font-size: 36px;'>
+        WWSEF 2025: Thyroid Cancer Recurrence Prediction Machine Learning Model - Aanya M
+        </h1>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    # Sentence with Custom Font Size and Color
+    st.markdown(
+        """
+        <p style='color: #555555; font-size: 18px;'>
+        Provide inputs for each feature:
+        </p>
+        """,
+        unsafe_allow_html=True
+    )
 
     # Feature: Age
     age = st.number_input("Age:", min_value=0, max_value=120, step=1)
@@ -36,7 +53,7 @@ def main():
         0: "N0", 1: "N1b", 2: "N1a"
     }[x])
 
-   # Feature: Adenopathy ('No':0,'Right':1, 'Extensive':2, 'Left':3, 'Bilateral':4, 'Posterior':5)
+    # Feature: Adenopathy ('No':0,'Right':1, 'Extensive':2, 'Left':3, 'Bilateral':4, 'Posterior':5)
     adenopathy = st.selectbox("Adenopathy:", options=[0, 1, 2, 3, 4, 5], format_func=lambda x: {
         0: "No", 1: "Right", 2: "Extensive", 3: "Left", 4: "Bilateral", 5: "Posterior"}[x])
 
