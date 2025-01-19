@@ -37,16 +37,19 @@ def main():
         unsafe_allow_html=True
     )
 
-    # Custom CSS for removing extra spacing
+    # Custom CSS for tighter spacing between title and dropdown/input box
     st.markdown(
         """
         <style>
-        .streamlit-expanderHeader {
-            padding-top: 0px;
+        .stTextInput, .stSelectbox, .stNumberInput, .stSelectSlider, .stSlider {
+            margin-top: 0px;
+            margin-bottom: 0px;  /* Remove margins between the input and title */
+        }
+        .stForm {
+            margin-top: 0px;
         }
         .css-1x0f5v0 {
-            margin-top: 0px;
-            margin-bottom: 0px;  /* Added margin-bottom: 0px */
+            margin-bottom: 0px !important;
         }
         </style>
         """,
