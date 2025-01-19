@@ -31,7 +31,7 @@ def main():
     st.markdown(
         """
         <p style='color: #ff0000; font-size: 22px;'>
-        <b>Select inputs for each feature from dropdown list:</b>
+        <b>Select inputs for each feature below:</b>
         </p>
         """,
         unsafe_allow_html=True
