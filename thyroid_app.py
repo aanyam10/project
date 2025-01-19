@@ -5,7 +5,7 @@ from io import BytesIO
 
 @st.cache_resource
 def load_model():
-    url = "https://raw.githubusercontent.com/aanyam10/project/main/thyroid_model_1.pkl"
+    url = "https://raw.githubusercontent.com/aanyam10/project/main/thyroid_model_final.pkl"
     response = requests.get(url)
     if response.status_code == 200:
         return joblib.load(BytesIO(response.content))
