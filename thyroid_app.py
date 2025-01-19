@@ -46,6 +46,7 @@ def main():
         }
         .css-1x0f5v0 {
             margin-top: 0px;
+            margin-bottom: 0px;  /* Added margin-bottom: 0px */
         }
         </style>
         """,
@@ -101,6 +102,15 @@ def main():
             f"""
             <p style='text-align: center; font-size: 20px; color: red;'>
             <b>Confidence in Recurrence:</b> {confidence_recurrence:.2f}%
+            </p>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            f"""
+            <p style='text-align: center; font-size: 20px; color: green;'>
+            <b>Confidence in No Recurrence:</b> {confidence_no_recurrence:.2f}%
             </p>
             """,
             unsafe_allow_html=True
