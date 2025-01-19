@@ -2,6 +2,7 @@ import streamlit as st
 import joblib
 import requests
 from io import BytesIO
+import matplotlib.pyplot as plt
 
 @st.cache_resource
 def load_model():
@@ -54,11 +55,11 @@ def main():
         0: "N0", 1: "N1b", 2: "N1a"
     }[x])
 
-    # Feature: Adenopathy ('No':0,'Right':1, 'Extensive':2, 'Left':3, 'Bilateral':4, 'Posterior':5)
+    # Feature: Adenopathy ('No':0,'Right':1,'Extensive':2,'Left':3,'Bilateral':4,'Posterior':5)
     adenopathy = st.selectbox("Adenopathy:", options=[0, 1, 2, 3, 4, 5], format_func=lambda x: {
         0: "No", 1: "Right", 2: "Extensive", 3: "Left", 4: "Bilateral", 5: "Posterior"}[x])
 
-    # Feature: Response ('Excellent':0,'Indeterminate':1, 'Structural Incomplete':2, 'Biochemical Incomplete':3)
+    # Feature: Response ('Excellent':0,'Indeterminate':1,'Structural Incomplete':2,'Biochemical Incomplete':3)
     response = st.selectbox("Response:", options=[0, 1, 2, 3], format_func=lambda x: {
         0: "Excellent", 1: "Indeterminate", 2: "Structural Incomplete", 3: "Biochemical Incomplete"}[x])
 
@@ -76,6 +77,18 @@ def main():
 
         # Display results as confidence percentages
         st.write(f"**Confidence in Recurrence:** {confidence_recurrence:.2f}%")
+        st.write(f"**Confidence in No Recurrence:** {confidence_no_recurrence:.2f}%")
+
+        # Visualization with Matplotlib
+        fig, ax = plt.subplots()
+        ax.bar(
+            ["No Recurrence", "Recurrence"],
+            [confidence_no_recurrence, confidence_recurrence],
+            color=["green", "red"],
+        )
+        ax.set_ylabel("Confidence Percentage")
+        ax.set_title("Prediction Confidence")
+        st.pyplot(fig)
 
 if __name__ == "__main__":
     main()
