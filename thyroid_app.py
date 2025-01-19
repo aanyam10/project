@@ -77,7 +77,7 @@ def main():
 
         # Display results as confidence percentages
         st.write(f"**Confidence in Recurrence:** {confidence_recurrence:.2f}%")
-        st.write(f"**Confidence in No Recurrence:** {confidence_no_recurrence:.2f}%")
+        #st.write(f"**Confidence in No Recurrence:** {confidence_no_recurrence:.2f}%")
 
         # Visualization with Matplotlib
         fig, ax = plt.subplots()
