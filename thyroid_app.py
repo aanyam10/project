@@ -15,21 +15,22 @@ def load_model():
 model = load_model()
 
 def main():
-    # Centered Title with Custom Font Size and Color
+    # Centered Title with Break Line and Bold Italic Styling
     st.markdown(
         """
-        <h1 style='text-align: center; color: #4CAF50; font-size: 36px;'>
-        WWSEF 2025: Thyroid Cancer Recurrence Prediction Machine Learning Model - Aanya M
+        <h1 style='text-align: center; color: #0000FF; font-size: 34px;'>
+        <b><i>WWSEF 2025: Thyroid Cancer Recurrence Prediction Machine Learning Model</i></b><br>
+        <b><i>Aanya M</i></b>
         </h1>
         """,
         unsafe_allow_html=True
     )
     
-    # Sentence with Custom Font Size and Color
+    # Sentence with Bold Italic, Custom Font Size, and Color
     st.markdown(
         """
-        <p style='color: #555555; font-size: 18px;'>
-        Provide inputs for each feature:
+        <p style='color: #ff0000; font-size: 22px;'>
+        <b><i>Provide inputs for each feature:</i></b>
         </p>
         """,
         unsafe_allow_html=True
