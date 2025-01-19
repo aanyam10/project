@@ -26,8 +26,8 @@ def main():
         0: "I", 1: "II", 2: "III", 3: "IVB", 4: "IVA"
     }[x])
 
-    # Feature: T (Tumor size/stage) (T1a: 0, T1b: 1, T2: 2, T3a: 3, T3b: 4, T4a: 5, T4b: 6)
-    t = st.selectbox("T (Tumor size/stage):", options=[0, 1, 2, 3, 4, 5, 6], format_func=lambda x: {
+    # Feature: T (Tumor size) (T1a: 0, T1b: 1, T2: 2, T3a: 3, T3b: 4, T4a: 5, T4b: 6)
+    t = st.selectbox("T (Tumor size):", options=[0, 1, 2, 3, 4, 5, 6], format_func=lambda x: {
         0: "T1a", 1: "T1b", 2: "T2", 3: "T3a", 4: "T3b", 5: "T4a", 6: "T4b"
     }[x])
 
@@ -37,11 +37,11 @@ def main():
     }[x])
 
    # Feature: Adenopathy ('No':0,'Right':1, 'Extensive':2, 'Left':3, 'Bilateral':4, 'Posterior':5)
-    adenopathy = st.selectbox("adenopathy:", options=[0, 1, 2, 3, 4, 5], format_func=lambda x: {
+    adenopathy = st.selectbox("Adenopathy:", options=[0, 1, 2, 3, 4, 5], format_func=lambda x: {
         0: "No", 1: "Right", 2: "Extensive", 3: "Left", 4: "Bilateral", 5: "Posterior"}[x])
 
     # Feature: Response ('Excellent':0,'Indeterminate':1, 'Structural Incomplete':2, 'Biochemical Incomplete':3)
-    response = st.selectbox("response:", options=[0, 1, 2, 3], format_func=lambda x: {
+    response = st.selectbox("Response:", options=[0, 1, 2, 3], format_func=lambda x: {
         0: "Excellent", 1: "Indeterminate", 2: "Structural Incomplete", 3: "Biochemical Incomplete"}[x])
 
     # Combine all features into a single input array
