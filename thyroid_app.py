@@ -13,6 +13,9 @@ def load_model():
     else:
         raise Exception(f"Failed to load model. Status code: {response.status_code}")
 
+# Hardcoding the model accuracy (you may replace this with a dynamic fetch if available)
+MODEL_ACCURACY = 92.5  # Example: 92.5%
+
 model = load_model()
 
 def main():
@@ -74,6 +77,9 @@ def main():
         probabilities = model.predict_proba(input_data)
         confidence_no_recurrence = probabilities[0][0] * 100
         confidence_recurrence = probabilities[0][1] * 100
+
+        # Display the model accuracy
+        st.write(f"**Model Accuracy:** {MODEL_ACCURACY:.2f}%")
 
         # Display results as confidence percentages
         st.write(f"**Confidence in Recurrence:** {confidence_recurrence:.2f}%")
