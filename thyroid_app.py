@@ -17,10 +17,10 @@ model = load_model()
 def main():
     # Centered Title with Break Line and Bold Italic Styling
     st.markdown(
-        f"""
+        """
         <h1 style='text-align: center; color: #0000FF; font-size: 34px;'>
         WWSEF 2025: Thyroid Cancer Recurrence Prediction Machine Learning Model<br>
-        <b><i style="font-size: 18px;">by Aanya Mendapara</i></b>
+        <b><i style="font-size: 18px;">Aanya Mendapara</i></b>
         </h1>
         """,
         unsafe_allow_html=True
@@ -71,4 +71,11 @@ def main():
     # Predict button
     if st.button("Predict"):
         probabilities = model.predict_proba(input_data)
-        confidence_no_recurrence
+        confidence_no_recurrence = probabilities[0][0] * 100
+        confidence_recurrence = probabilities[0][1] * 100
+
+        # Display results as confidence percentages
+        st.write(f"**Confidence in Recurrence:** {confidence_recurrence:.2f}%")
+
+if __name__ == "__main__":
+    main()
