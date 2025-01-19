@@ -78,8 +78,8 @@ def main():
         # Display results as confidence percentages with custom style
         st.markdown(
             f"""
-            <p style='text-align: center; font-size: 24px; color: #ff4500;'>
-            **Confidence in Recurrence:** {confidence_recurrence:.2f}%
+            <p style='text-align: center; font-size: 24px; color: #000000;'>
+            Confidence in Recurrence: {confidence_recurrence:.2f}%
             </p>
             """,
             unsafe_allow_html=True
