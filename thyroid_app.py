@@ -19,8 +19,8 @@ def main():
     st.markdown(
         """
         <h1 style='text-align: center; color: #0000FF; font-size: 34px;'>
-        <b><i>WWSEF 2025: Thyroid Cancer Recurrence Prediction Machine Learning Model</i></b><br>
-        <b><i>Aanya M</i></b>
+        WWSEF 2025: Thyroid Cancer Recurrence Prediction Machine Learning Model<br>
+        <b><i>Aanya Mendapara</i></b>
         </h1>
         """,
         unsafe_allow_html=True
@@ -30,7 +30,7 @@ def main():
     st.markdown(
         """
         <p style='color: #ff0000; font-size: 22px;'>
-        <b><i>Provide inputs for each feature:</i></b>
+        <b>Select inputs for each feature from dropdown list:</b>
         </p>
         """,
         unsafe_allow_html=True
