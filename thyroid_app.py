@@ -85,16 +85,42 @@ def main():
             unsafe_allow_html=True
         )
 
-        # Visualization with Matplotlib
-        fig, ax = plt.subplots()
-        ax.bar(
-            ["No Recurrence", "Recurrence"],
-            [confidence_no_recurrence, confidence_recurrence],
-            color=["green", "red"],
-        )
-        ax.set_ylabel("Confidence Percentage")
-        ax.set_title("Prediction Confidence")
-        st.pyplot(fig)
+# Visualization with Matplotlib
+import matplotlib.pyplot as plt
+
+# Assuming `confidence_no_recurrence` and `confidence_recurrence` are the confidence scores
+confidence_no_recurrence = 100 - confidence_score  # Example value for "No Recurrence"
+confidence_recurrence = confidence_score  # Example value for "Recurrence"
+
+fig, ax = plt.subplots()
+
+# Create bars for "No Recurrence" and "Recurrence"
+bars = ax.bar(
+    ["No Recurrence", "Recurrence"],
+    [confidence_no_recurrence, confidence_recurrence],
+    color=["green", "red"],
+)
+
+# Set labels and title
+ax.set_ylabel("Confidence Percentage")
+ax.set_title("Prediction Confidence")
+
+# Display the percentage on top of the bars
+for bar in bars:
+    yval = bar.get_height()
+    ax.text(
+        bar.get_x() + bar.get_width() / 2,  # x position (center of the bar)
+        yval + 2,  # y position (slightly above the bar)
+        f'{yval:.2f}%',  # Display the value with a '%' sign
+        ha='center',  # Horizontal alignment (centered)
+        va='bottom',  # Vertical alignment (bottom of the text)
+        fontsize=12,  # Font size for the text
+        color='black'  # Color of the text
+    )
+
+# Show the plot with Streamlit
+import streamlit as st
+st.pyplot(fig)
 
 if __name__ == "__main__":
     main()
