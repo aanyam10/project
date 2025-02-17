@@ -20,8 +20,8 @@ def main():
     st.markdown(
         """
         <h1 style='text-align: center; color: #0000FF; font-size: 34px;'>
-        WWSEF 2025: Thyroid Cancer Recurrence Prediction Machine Learning Model<br>
-        <b><i style="font-size: 18px;">Aanya Mendapara</i></b>
+        ThyroML: A Novel Solution Towards Predicting Thyroid Cancer Recurrences Using Machine Learning<br>
+        <b><i style="font-size: 18px;">Aanya Mendapara - WWSEF 2025</i></b>
         </h1>
         """,
         unsafe_allow_html=True
