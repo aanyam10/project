@@ -20,7 +20,7 @@ def main():
     st.markdown(
         """
         <h1 style='text-align: center; color: #0000FF; font-size: 34px;'>
-        ThyroML: A Novel Solution Towards Predicting Thyroid Cancer Recurrences Using Machine Learning<br>
+        ThyroML <br> A Novel Solution Towards Predicting Thyroid Cancer Recurrences Using Machine Learning<br>
         <b><i style="font-size: 18px;">Aanya Mendapara - WWSEF 2025</i></b>
         </h1>
         """,
