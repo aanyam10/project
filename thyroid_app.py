@@ -67,7 +67,9 @@ def main():
     input_data = [[age, stage, t, n, adenopathy, response]]
 
     # Add this right before making the prediction in the Streamlit app
-    st.write(f"Input data: {input_data}")
+    #st.write(f"Input data: {input_data}")
+
+    st.markdown(f'<p style="color:white;">Input data: {input_data}</p>', unsafe_allow_html=True)
 
     # Predict button
     if st.button("Predict"):
