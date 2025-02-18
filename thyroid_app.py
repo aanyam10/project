@@ -19,7 +19,7 @@ def main():
     # Centered Title with Break Line and Bold Italic Styling
     st.markdown(
         """
-        <h1 style='text-align: center; color: #0000FF; font-size: 34px;'>
+        <h1 style='text-align: center; color: #0000FF; font-size: 30px;'>
         ThyroML <br> Thyroid Cancer Recurrence Prediction Model<br>
         <b><i style="font-size: 18px;">Aanya Mendapara - WWSEF 2025</i></b>
         </h1>
